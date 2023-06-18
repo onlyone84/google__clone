@@ -1,0 +1,139 @@
+/*? global clearing */
+*,
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Dosis", sans-serif;
+}
+
+:root {
+  --bgColorPrimary: #302e31;
+}
+
+.head {
+  position: fixed;
+  background-color: transparent;
+  width: 100%;
+}
+
+.header__right {
+  width: 100%;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+}
+
+.header__right a {
+  font-weight: 300;
+  font-size: 15px;
+  padding: 8px 11px;
+  color: #f6f6f6;
+  display: flex;
+  margin-top: 5px;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  background: url("../img/lupi.png");
+  background-size: cover;
+  background-position: bottom;
+}
+
+.acc {
+  width: 33px;
+  height: 33px;
+  border-radius: 33px;
+  background-image: url("../img/hara.jpg");
+  background-size: cover;
+  background-position: bottom;
+  transition: .5s ease;
+}
+
+.acc:hover {
+  transform: scale(1.2);
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.content .search {
+  width: 34%;
+  padding: 9px;
+  border-radius: 20px;
+  border: 1px solid var(--bgColorPrimary);
+  display: flex;
+  margin: 25px 0px;
+}
+
+.search input {
+  width: 100%;
+  background-color: transparent;
+  color: #f6f6f6;
+  outline: none;
+  border: none;
+  padding: 0px 10px;
+  font-size: 17px;
+  font-weight: 200d;
+}
+
+.icon {
+  padding: 0px 8px;
+  color: #f6f6f6;
+  cursor: pointer;
+}
+
+.searchIcon {
+  color: #f6f6f6;
+  cursor:default;
+}
+
+.search:hover {
+  background-color: var(--bgColorPrimary);
+  box-shadow: 1px 2px 15px 2px rgba(143, 140, 140, 0.2);
+  -webkit-box-shadow: 1px 2px 15px 2px rgba(217, 204, 204, 0.2);
+  -moz-box-shadow: 1px 2px 15px 2px rgba(217, 204, 204, 0.2);
+}
+
+.btn {
+  border: none;
+  padding: 10px 33px;
+  margin: 0px 18px;
+  border-radius: 13px;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.btn:hover {
+  font-weight: 400;
+  background-color: var(--bgColorPrimary);
+  border: 1px solid var(--bgColorPrimary);
+  color: #e4e4e4;
+}
+
+.lang {
+  margin: 25px 0px;
+  color: #f6f6f6;
+}
+
+.lang a {
+  margin: 5px;
+  color: #56568c;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 767px) {
+  
+
+}

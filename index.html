@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>✨ Scratch Project ✨</title>
+    <link rel="stylesheet" href="./src/style/global.css" />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="css/materialize.min.css"
+      media="screen,projection"
+    />
+    <link rel="icon" href="/src/img/Google__G__Logo.svg.webp" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dosis&family=Silkscreen&display=swap"
+      rel="stylesheet"
+    />
+
+  </head>
+  <body>
+    <header class="head">
+      <div class="header__right">
+        <a href="#gmail">Gmail</a>
+        <a href="#gambar">Gambar</a>
+        <a href="#apps">
+          <span class="material-icons apps">apps</span>
+        </a>
+        <a href="#profil" class="acc"></a>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="content">
+        <img
+          src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png"
+        />
+
+        <!-- ini tombol search -->
+        <div class="search">
+          <span class="material-icons searchIcon">search</span>
+          <input id="search" />
+          <span class="material-icons icon camera">camera_alt</span>
+        </div>
+
+        <div class="btn-group">
+          <button class="btn" onclick="searchGoogle()">Penelusuran Google</button>
+          <button class="btn" onclick="sayaBeruntung()">Saya Lagi Beruntung</button>
+        </div>
+        <div class="lang">
+          Google tersedia dalam bahasa : <a href="#english">English</a>
+          <a href="#bali">Bali</a>
+        </div>
+      </div>
+    </div>
+    <script src="./src/js/index.js"></script>
+  </body>
+</html>
