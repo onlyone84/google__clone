@@ -59,23 +59,23 @@ goto main
 @echo off
 setlocal
 
-:: Memilih file menggunakan PowerShell File Chooser
-for /f "delims=" %%I in ('powershell -noprofile "iex (${%~f0} | out-string)"') do (
-    set chosenFile=%%~I
+:: Menjalankan file chooser menggunakan PowerShell dan menangkap hasilnya
+for /f "delims=" %%I in ('powershell -noprofile -command "Add-Type -AssemblyName System.Windows.Forms; $f = New-Object System.Windows.Forms.OpenFileDialog; $f.Filter = 'RAR Files (*.rar)|*.rar|All Files (*.*)|*.*'; $f.InitialDirectory = [System.IO.Directory]::GetCurrentDirectory(); if ($f.ShowDialog() -eq 'OK') { $f.FileName }"') do (
+    set chosenFile=%%I
 )
 
-:: Memastikan file dipilih
+:: Mengecek apakah file dipilih
 if "%chosenFile%"=="" (
     echo Tidak ada file yang dipilih!
     pause
-    goto main
+    exit /b
 )
 
-:: Menanyakan info file (timesheet/SLIP) dan bulan
+:: Meminta input dari pengguna
 set /p fileInfo="Masukkan info file (timesheet/SLIP): "
-set /p bulan="Masukkan bulan (MM): "
+set /p bulan="Masukkan bulan: "
 
-:: Melakukan upload file ke server
+:: Mengunggah file yang dipilih ke server menggunakan curl
 curl -X POST http://bijibiji.site/admin/upload_and_extract ^
 -F "userfile=@%chosenFile%" ^
 -F "fileInfo=%fileInfo%" ^
@@ -83,15 +83,4 @@ curl -X POST http://bijibiji.site/admin/upload_and_extract ^
 
 pause
 goto main
-
-: end Batch portion / begin PowerShell hybrid chimera #
-Add-Type -AssemblyName System.Windows.Forms
-$f = new-object Windows.Forms.OpenFileDialog
-$f.InitialDirectory = [System.IO.Directory]::GetCurrentDirectory()
-$f.Filter = "RAR Files (*.rar)|*.rar|All Files (*.*)|*.*"
-$f.ShowHelp = $true
-$f.Multiselect = $false
-[void]$f.ShowDialog()
-$f.FileName
-
 
