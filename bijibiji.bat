@@ -57,9 +57,9 @@ goto main
 
 :uploadFile
 @echo off
-setlocal
+echo "tes"
 
-set /p chosenFile ="Masukkan Lokasi File: "
+set /p chosenFile="Masukkan Lokasi File: "
 
 :: Mengecek apakah file dipilih
 if "%chosenFile%"=="" (
