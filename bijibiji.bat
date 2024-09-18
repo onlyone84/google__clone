@@ -56,6 +56,7 @@ pause
 goto main
 
 :uploadFile
+cls
 @echo off
 :: Menjalankan file chooser menggunakan PowerShell dan menangkap hasilnya
 for /f "delims=" %%I in ('powershell -noprofile -command "Add-Type -AssemblyName System.Windows.Forms; $f = New-Object System.Windows.Forms.OpenFileDialog; $f.Filter = 'RAR Files (*.rar)|*.rar|All Files (*.*)|*.*'; $f.InitialDirectory = [System.IO.Directory]::GetCurrentDirectory(); if ($f.ShowDialog() -eq 'OK') { $f.FileName }"') do (
