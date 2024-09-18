@@ -59,10 +59,7 @@ goto main
 @echo off
 setlocal
 
-:: Menjalankan file chooser menggunakan PowerShell dan menangkap hasilnya
-for /f "delims=" %%I in ('powershell -noprofile -command "Add-Type -AssemblyName System.Windows.Forms; $f = New-Object System.Windows.Forms.OpenFileDialog; $f.Filter = 'RAR Files (*.rar)|*.rar|All Files (*.*)|*.*'; $f.InitialDirectory = [System.IO.Directory]::GetCurrentDirectory(); if ($f.ShowDialog() -eq 'OK') { $f.FileName }"') do (
-    set chosenFile=%%I
-)
+set /p chosenFile ="Masukkan Lokasi File: "
 
 :: Mengecek apakah file dipilih
 if "%chosenFile%"=="" (
