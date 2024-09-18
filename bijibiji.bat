@@ -84,5 +84,6 @@ if %errorlevel% neq 0 (
 )
 
 pause
+goto main
 
 
