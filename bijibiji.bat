@@ -92,18 +92,7 @@ curl -X POST https://bijibiji.site/admin/notifications/upload_and_extract ^
 -F "userfile=@%chosenFile%" ^
 -F "fileInfo=%fileInfo%" ^
 -F "bulan=%bulan%" ^
---progress-bar
-
-:: Menampilkan progress bar
-:progress
-    set /a count+=1
-    set /a percent=(%count% * 100 / %totalChunks%)
-    set /p =%percent%<nul
-    echo %%%
-    timeout /t 1 >nul
-    if %count% lss %totalChunks% goto progress
 
 pause
-
 goto main
 
