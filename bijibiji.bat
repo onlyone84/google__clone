@@ -8,6 +8,7 @@ echo                        1. Send Notification
 echo                        2. Delete All Notifications
 echo                        3. Tambah Karyawan
 echo                        4. Exit
+echo                        5. Tes
 echo.
 choice /c 1234 /n /m "Press the number of your choice: "
 
