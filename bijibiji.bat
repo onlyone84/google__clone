@@ -57,9 +57,9 @@ goto main
 
 :uploadFile
 @echo off
-echo "tes"
-
-set /p chosenFile="Masukkan Lokasi File: "
+for /f "delims=" %%I in ('powershell -noprofile -command "Add-Type -AssemblyName System.Windows.Forms; $f = New-Object System.Windows.Forms.OpenFileDialog; $f.Filter = 'RAR Files (*.rar)|*.rar|All Files (*.*)|*.*'; $f.InitialDirectory = [System.IO.Directory]::GetCurrentDirectory(); if ($f.ShowDialog() -eq 'OK') { $f.FileName }"') do (
+    set chosenFile=%%I
+)
 
 :: Mengecek apakah file dipilih
 if "%chosenFile%"=="" (
