@@ -67,7 +67,7 @@ for /f "delims=" %%I in ('powershell -noprofile -command "Add-Type -AssemblyName
 if "%chosenFile%"=="" (
     echo Tidak ada file yang dipilih!
     pause
-    exit /b
+    goto main
 )
 
 :: Meminta input dari pengguna
