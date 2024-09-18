@@ -10,7 +10,7 @@ echo  3. Tambah Karyawan
 echo  4. Upload File
 echo  5. Exit
 echo.
-choice /c 1234 /n /m "Press the number of your choice: "
+choice /c 12345 /n /m "Press the number of your choice: "
 
 if errorlevel 5 goto exit
 if errorlevel 4 goto uploadFile
