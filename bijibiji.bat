@@ -76,32 +76,23 @@ if "%chosenFile%"=="" (
 set /p fileInfo="Masukkan info file (timesheet/slip): "
 set /p bulan="Masukkan bulan: "
 
-:: Mendapatkan ukuran file dalam byte
-for %%A in ("%chosenFile%") do set fileSize=%%~zA
+cls
+echo Mengunggah file...
 
-:: Ukuran chunk upload (dalam byte) - misalnya 1MB
-set chunkSize=1048576
-set /a totalChunks=(%fileSize% / %chunkSize%)
-if %fileSize% lss %chunkSize% set /a totalChunks=1
-
-echo Uploading file...
-set /a count=0
-
-:: Mengunggah file ke server menggunakan curl dan memonitor progress
+:: Mengunggah file ke server menggunakan curl dan menangkap respons dari server
 curl -X POST https://bijibiji.site/admin/notifications/upload_and_extract ^
 -F "userfile=@%chosenFile%" ^
 -F "fileInfo=%fileInfo%" ^
 -F "bulan=%bulan%" ^
---progress-bar
+--silent --show-error --output response.txt
 
-:: Menampilkan progress bar
-:progress
-    set /a count+=1
-    set /a percent=(%count% * 100 / %totalChunks%)
-    set /p =%percent%<nul
-    echo %%%
-    timeout /t 1 >nul
-    if %count% lss %totalChunks% goto progress
+:: Menampilkan output dari respons yang diterima dari server
+if exist response.txt (
+    type response.txt
+    del response.txt
+) else (
+    echo Gagal mendapatkan respons dari server.
+)
 
 pause
 
