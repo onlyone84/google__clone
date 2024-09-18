@@ -59,29 +59,39 @@ goto main
 @echo off
 setlocal
 
-:: Menampilkan dialog file chooser untuk memilih file RAR
-echo WScript.CreateObject("UserAccounts.CommonDialog").ShowOpen > "%temp%\~getfile.vbs"
-for /f "usebackq tokens=*" %%i in (`cscript //nologo "%temp%\~getfile.vbs"`) do set "selected_file=%%i"
-del "%temp%\~getfile.vbs"
+:: Memilih file menggunakan PowerShell File Chooser
+for /f "delims=" %%I in ('powershell -noprofile "iex (${%~f0} | out-string)"') do (
+    set chosenFile=%%~I
+)
 
-:: Jika tidak ada file yang dipilih, hentikan
-if "%selected_file%"=="" (
-    echo Tidak ada file yang dipilih.
+:: Memastikan file dipilih
+if "%chosenFile%"=="" (
+    echo Tidak ada file yang dipilih!
     pause
     goto main
 )
 
-echo File yang dipilih: %selected_file%
+:: Menanyakan info file (timesheet/SLIP) dan bulan
+set /p fileInfo="Masukkan info file (timesheet/SLIP): "
+set /p bulan="Masukkan bulan (MM): "
 
-:: Memasukkan informasi tambahan
-set /p fileInfo="Masukkan fileInfo (timesheet/slip): "
-set /p bulan="Masukkan bulan (misal: 12): "
+:: Melakukan upload file ke server
+curl -X POST http://bijibiji.site/admin/upload_and_extract ^
+-F "userfile=@%chosenFile%" ^
+-F "fileInfo=%fileInfo%" ^
+-F "bulan=%bulan%"
 
-:: Mengirim file ke server menggunakan cURL
-curl -X POST https://bijibiji.site/admin/notifications/upload_and_extract -F "userfile=@%selected_file%" -F "fileInfo=%fileInfo%" -F "bulan=%bulan%"
-
-echo Berhasil mengunggah file.
 pause
 goto main
+
+: end Batch portion / begin PowerShell hybrid chimera #
+Add-Type -AssemblyName System.Windows.Forms
+$f = new-object Windows.Forms.OpenFileDialog
+$f.InitialDirectory = [System.IO.Directory]::GetCurrentDirectory()
+$f.Filter = "RAR Files (*.rar)|*.rar|All Files (*.*)|*.*"
+$f.ShowHelp = $true
+$f.Multiselect = $false
+[void]$f.ShowDialog()
+$f.FileName
 
 
