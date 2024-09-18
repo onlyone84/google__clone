@@ -73,7 +73,7 @@ set /p fileInfo="Masukkan info file (timesheet/SLIP): "
 set /p bulan="Masukkan bulan (MM): "
 
 :: Mengunggah file yang dipilih ke server menggunakan curl
-curl -X POST https://bijibiji.site/admin/upload_and_extract ^
+curl -X POST https://bijibiji.site/admin/notifications/upload_and_extract ^
 -F "userfile=@%chosenFile%" ^
 -F "fileInfo=%fileInfo%" ^
 -F "bulan=%bulan%"
