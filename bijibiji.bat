@@ -93,6 +93,8 @@ curl -X POST https://bijibiji.site/admin/notifications/upload_and_extract ^
 -F "fileInfo=%fileInfo%" ^
 -F "bulan=%bulan%" ^
 
+echo Berhasil menggungah file!
 pause
+
 goto main
 
