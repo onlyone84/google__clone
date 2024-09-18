@@ -58,9 +58,11 @@ goto main
 :uploadFile
 cls
 @echo off
+setlocal
+
 :: Menjalankan file chooser menggunakan PowerShell dan menangkap hasilnya
 for /f "delims=" %%I in ('powershell -noprofile -command "Add-Type -AssemblyName System.Windows.Forms; $f = New-Object System.Windows.Forms.OpenFileDialog; $f.Filter = 'RAR Files (*.rar)|*.rar|All Files (*.*)|*.*'; $f.InitialDirectory = [System.IO.Directory]::GetCurrentDirectory(); if ($f.ShowDialog() -eq 'OK') { $f.FileName }"') do (
-    set chosenFile=%%I
+    set "chosenFile=%%I"
 )
 
 :: Mengecek apakah file dipilih
@@ -71,15 +73,37 @@ if "%chosenFile%"=="" (
 )
 
 :: Meminta input dari pengguna
-set /p fileInfo="Masukkan info file (timesheet/SLIP): "
-set /p bulan="Masukkan bulan (MM): "
+set /p fileInfo="Masukkan info file (timesheet/slip): "
+set /p bulan="Masukkan bulan: "
 
-:: Mengunggah file yang dipilih ke server menggunakan curl
+:: Mendapatkan ukuran file dalam byte
+for %%A in ("%chosenFile%") do set fileSize=%%~zA
+
+:: Ukuran chunk upload (dalam byte) - misalnya 1MB
+set chunkSize=1048576
+set /a totalChunks=(%fileSize% / %chunkSize%)
+if %fileSize% lss %chunkSize% set /a totalChunks=1
+
+echo Uploading file...
+set /a count=0
+
+:: Mengunggah file ke server menggunakan curl dan memonitor progress
 curl -X POST https://bijibiji.site/admin/notifications/upload_and_extract ^
 -F "userfile=@%chosenFile%" ^
 -F "fileInfo=%fileInfo%" ^
--F "bulan=%bulan%"
+-F "bulan=%bulan%" ^
+--progress-bar
+
+:: Menampilkan progress bar
+:progress
+    set /a count+=1
+    set /a percent=(%count% * 100 / %totalChunks%)
+    set /p =%percent%<nul
+    echo %%%
+    timeout /t 1 >nul
+    if %count% lss %totalChunks% goto progress
 
 pause
+
 goto main
 
