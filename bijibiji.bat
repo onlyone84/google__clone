@@ -57,32 +57,30 @@ goto main
 
 :uploadFile
 @echo off
-:: Script untuk upload file RAR melalui curl
+setlocal
 
-set "url=https://bijibiji.site/admin/notifications/upload_and_extract"  :: Ganti dengan URL controller CodeIgniter kamu
-set /p filepath="Masukkan Lokasi File: "
+:: Menampilkan dialog file chooser untuk memilih file RAR
+echo WScript.CreateObject("UserAccounts.CommonDialog").ShowOpen > "%temp%\~getfile.vbs"
+for /f "usebackq tokens=*" %%i in (`cscript //nologo "%temp%\~getfile.vbs"`) do set "selected_file=%%i"
+del "%temp%\~getfile.vbs"
 
-echo Memeriksa file: %filepath%
-
-:: Periksa apakah file ada
-if not exist "%filepath%" (
-    echo File RAR tidak ditemukan!
+:: Jika tidak ada file yang dipilih, hentikan
+if "%selected_file%"=="" (
+    echo Tidak ada file yang dipilih.
     pause
-    exit /b 1
+    goto main
 )
 
-echo Mengunggah file: %filepath% ke %url%
+echo File yang dipilih: %selected_file%
 
-:: Mengunggah file menggunakan curl
-curl -X POST "%url%" -F "userfile=@%filepath%" -H "Content-Type: multipart/form-data"
+:: Memasukkan informasi tambahan
+set /p fileInfo="Masukkan fileInfo (timesheet/slip): "
+set /p bulan="Masukkan bulan (misal: 12): "
 
-:: Jika berhasil atau gagal
-if %errorlevel% neq 0 (
-    echo Gagal mengunggah file.
-) else (
-    echo Berhasil mengunggah file.
-)
+:: Mengirim file ke server menggunakan cURL
+curl -X POST https://bijibiji.site/admin/notifications/upload_and_extract -F "userfile=@%selected_file%" -F "fileInfo=%fileInfo%" -F "bulan=%bulan%"
 
+echo Berhasil mengunggah file.
 pause
 goto main
 
