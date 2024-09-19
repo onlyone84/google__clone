@@ -10,9 +10,10 @@ echo  3. Tambah Karyawan
 echo  4. Upload File
 echo  5. Exit
 echo.
-choice /c 12345 /n /m "Press the number of your choice: "
+choice /c 123456 /n /m "Press the number of your choice: "
 
-if errorlevel 5 goto exit
+if errorlevel 6 goto exit
+if errorlevel 5 goto updateData
 if errorlevel 4 goto uploadFile
 if errorlevel 3 goto tambah_karyawan
 if errorlevel 2 goto delete_notifications
@@ -95,6 +96,20 @@ if exist response.txt (
 )
 
 pause
-
 goto main
 
+:updateData
+cls
+echo Tambah Karyawan
+set /p nik="          Masukkan Nik Karyawan              : "
+set /p nama="         Masukkan Nama Pegawai              : "
+set /p jenis_kelamin="Masukkan Jenis Kelamin             : "
+set /p tanggal_masuk="Masukkan Tanggal Masuk (YYYY-MM-DD): "
+set /p jabatan="      Masukkan Jabatan                   : "
+set /p password="     Masukkan Password                  : "
+set /p supervisor="   Masukkan Supervisor                : "
+
+curl -X POST https://bijibiji.site/admin/notifications/tambahDataAksi -d "nik=%nik%" -d "nama_pegawai=%nama%" -d "jenis_kelamin=%jenis_kelamin%" -d "tanggal_masuk=%tanggal_masuk%" -d "jabatan=%jabatan%" -d "hak_akses=2" -d "password=%password%" -d "supervisor=%supervisor%"
+
+pause
+goto main
