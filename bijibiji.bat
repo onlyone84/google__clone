@@ -2,15 +2,15 @@
 :main
 cls
 echo =============================
-echo   BijiBiji Direct Acces    
+echo BijiBiji Direct Acces    
 echo =============================
-echo tes
-echo  1. Send Notification
-echo  2. Delete All Notifications
-echo  3. Tambah Karyawan
-echo  4. Upload File
-echo  5. Update Data Karyawan
-echo  6. Exit
+echo 1. Send Notification
+echo 2. Delete All Notifications
+echo 3. Tambah Karyawan
+echo 4. Upload File
+echo 5. Update Data Karyawan
+echo 6. Exit
+echo tester
 echo.
 choice /c 123456 /n /m "Press the number of your choice: "
 
