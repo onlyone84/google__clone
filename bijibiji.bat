@@ -24,7 +24,8 @@ if exist login_response.txt (
 echo %response% | findstr /i "success" >nul
 if %errorlevel%==0 (
     echo Login berhasil!
-    pause
+    echo.
+    timeout 5 > NUL
     goto main
 ) else (
     echo Login gagal: Nik atau Password salah!
