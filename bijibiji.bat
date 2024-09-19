@@ -117,3 +117,7 @@ curl -X POST https://bijibiji.site/admin/notifications/tambahDataAksi -d "nik=%n
 
 pause
 goto main
+
+:exit
+exit
+pause
