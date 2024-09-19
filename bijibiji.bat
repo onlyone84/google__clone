@@ -1,4 +1,37 @@
 @echo off
+:login
+cls
+echo ==============================
+echo           Login System         
+echo ==============================
+set /p nik="Masukkan NIK: "
+set /p password="Masukkan Password: "
+
+:: Melakukan pengecekan login ke server menggunakan curl
+curl -X POST https://bijibiji.site/admin/notifications/login -d "nik=%nik%" -d "password=%password%" --silent --show-error --output login_response.txt
+
+:: Mengecek apakah login_response.txt ada dan membaca hasil login
+if exist login_response.txt (
+    for /f "tokens=*" %%a in (login_response.txt) do set "response=%%a"
+    del login_response.txt
+) else (
+    echo Gagal mendapatkan respons dari server.
+    pause
+    goto login
+)
+
+:: Cek apakah login berhasil atau gagal
+echo %response% | findstr /i "success" >nul
+if %errorlevel%==0 (
+    echo Login berhasil!
+    pause
+    goto main
+) else (
+    echo Login gagal: Nik atau Password salah!
+    pause
+    goto login
+)
+
 :main
 cls
 echo =============================
