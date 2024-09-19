@@ -96,6 +96,7 @@ if exist response.txt (
     echo Gagal mendapatkan respons dari server.
 )
 
+echo.
 pause
 goto main
 
@@ -110,6 +111,7 @@ set /p password="     Masukkan Password                  : "
 
 curl -X POST https://bijibiji.site/admin/notifications/updateDataAksi -d "nik=%nik%" -d "jabatan=%jabatan%" -d "password=%password%"
 
+echo.
 pause
 goto main
 
