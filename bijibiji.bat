@@ -25,9 +25,13 @@ echo %response% | findstr /i "success" >nul
 if %errorlevel%==0 (
     echo Login berhasil!
     echo.
-    echo %time%
-    timeout 3 > NUL
-    echo %time%
+    echo 1
+    timeout 1 > NUL
+    echo 2
+    timeout 1 > NUL
+    cls
+    ...
+    timeout 1 > NUL
     goto main
 ) else (
     echo Login gagal: Nik atau Password salah!
