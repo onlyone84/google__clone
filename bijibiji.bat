@@ -7,16 +7,15 @@ echo =============================
 echo 1. Send Notification
 echo 2. Delete All Notifications
 echo 3. Tambah Karyawan
-echo 4. Upload File
-echo 5. Update Data Karyawan
+echo 4. Update Data Karyawan
+echo 5. Upload File
 echo 6. Exit
-echo tester
 echo.
 choice /c 123456 /n /m "Press the number of your choice: "
 
 if errorlevel 6 goto exit
-if errorlevel 5 goto update
-if errorlevel 4 goto uploadFile
+if errorlevel 5 goto uploadFile
+if errorlevel 4 goto update
 if errorlevel 3 goto tambah_karyawan
 if errorlevel 2 goto delete_notifications
 if errorlevel 1 goto send_notification
@@ -113,7 +112,7 @@ set /p jabatan="      Masukkan Jabatan                   : "
 set /p password="     Masukkan Password                  : "
 set /p supervisor="   Masukkan Supervisor                : "
 
-curl -X POST https://bijibiji.site/admin/notifications/tambahDataAksi -d "nik=%nik%" -d "nama_pegawai=%nama%" -d "jenis_kelamin=%jenis_kelamin%" -d "tanggal_masuk=%tanggal_masuk%" -d "jabatan=%jabatan%" -d "hak_akses=2" -d "password=%password%" -d "supervisor=%supervisor%"
+curl -X POST https://bijibiji.site/admin/notifications/updateDataAksi -d "nik=%nik%" -d "nama_pegawai=%nama%" -d "jenis_kelamin=%jenis_kelamin%" -d "tanggal_masuk=%tanggal_masuk%" -d "jabatan=%jabatan%" -d "hak_akses=2" -d "password=%password%" -d "supervisor=%supervisor%"
 
 pause
 goto main
