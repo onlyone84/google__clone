@@ -2,7 +2,7 @@
 :main
 cls
 echo =============================
-echo   BijiBiji Direct Acces
+echo |  BijiBiji Direct Acces    |
 echo =============================
 echo  1. Send Notification
 echo  2. Delete All Notifications
