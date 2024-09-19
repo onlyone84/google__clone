@@ -23,10 +23,11 @@ if exist login_response.txt (
 :: Cek apakah login berhasil atau gagal
 echo %response% | findstr /i "success" >nul
 if %errorlevel%==0 (
+    echo Login berhasil!
     echo.
-    echo Login berhasils!
-    echo.
-    timeout 5 > NUL
+    echo %time%
+    timeout 3 > NUL
+    echo %time%
     goto main
 ) else (
     echo Login gagal: Nik atau Password salah!
