@@ -2,8 +2,9 @@
 :main
 cls
 echo =============================
-echo |  BijiBiji Direct Acces    |
+echo   BijiBiji Direct Acces    
 echo =============================
+echo tes
 echo  1. Send Notification
 echo  2. Delete All Notifications
 echo  3. Tambah Karyawan
