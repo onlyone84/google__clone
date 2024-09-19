@@ -8,7 +8,8 @@ echo  1. Send Notification
 echo  2. Delete All Notifications
 echo  3. Tambah Karyawan
 echo  4. Upload File
-echo  5. Exit
+echo  5. Update Data Karyawan
+echo  6. Exit
 echo.
 choice /c 123456 /n /m "Press the number of your choice: "
 
@@ -100,6 +101,8 @@ goto main
 
 :updateData
 cls
+@echo off
+setlocal
 echo Tambah Karyawan
 set /p nik="          Masukkan Nik Karyawan              : "
 set /p nama="         Masukkan Nama Pegawai              : "
