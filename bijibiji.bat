@@ -14,7 +14,7 @@ echo.
 choice /c 123456 /n /m "Press the number of your choice: "
 
 if errorlevel 6 goto exit
-if errorlevel 5 goto updateData
+if errorlevel 5 goto update
 if errorlevel 4 goto uploadFile
 if errorlevel 3 goto tambah_karyawan
 if errorlevel 2 goto delete_notifications
@@ -99,7 +99,7 @@ if exist response.txt (
 pause
 goto main
 
-:updateData
+:update
 cls
 @echo off
 setlocal
