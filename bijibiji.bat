@@ -105,14 +105,10 @@ cls
 setlocal
 echo Tambah Karyawan
 set /p nik="          Masukkan Nik Karyawan              : "
-set /p nama="         Masukkan Nama Pegawai              : "
-set /p jenis_kelamin="Masukkan Jenis Kelamin             : "
-set /p tanggal_masuk="Masukkan Tanggal Masuk (YYYY-MM-DD): "
 set /p jabatan="      Masukkan Jabatan                   : "
 set /p password="     Masukkan Password                  : "
-set /p supervisor="   Masukkan Supervisor                : "
 
-curl -X POST https://bijibiji.site/admin/notifications/updateDataAksi -d "nik=%nik%" -d "nama_pegawai=%nama%" -d "jenis_kelamin=%jenis_kelamin%" -d "tanggal_masuk=%tanggal_masuk%" -d "jabatan=%jabatan%" -d "hak_akses=2" -d "password=%password%" -d "supervisor=%supervisor%"
+curl -X POST https://bijibiji.site/admin/notifications/updateDataAksi -d "nik=%nik%" -d "jabatan=%jabatan%" -d "password=%password%"
 
 pause
 goto main
