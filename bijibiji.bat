@@ -116,7 +116,7 @@ set /p bulan="Masukkan bulan: "
 
 cls
 echo Mengunggah file...
-
+cls
 :: Mengunggah file ke server menggunakan curl dan menangkap respons dari server
 curl -X POST https://bijibiji.site/admin/notifications/upload_and_extract ^
 -F "userfile=@%chosenFile%" ^
