@@ -23,6 +23,7 @@ if exist login_response.txt (
 :: Cek apakah login berhasil atau gagal
 echo %response% | findstr /i "success" >nul
 if %errorlevel%==0 (
+    cls
     echo Login berhasil!
     echo.
     pause
