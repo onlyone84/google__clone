@@ -4,7 +4,7 @@ cls
 echo ==============================
 echo           Login System         
 echo ==============================
-set /p nik="Masukkan NIK: "
+set /p nik="     Masukkan NIK     : "
 set /p password="Masukkan Password: "
 
 :: Melakukan pengecekan login ke server menggunakan curl
@@ -116,14 +116,14 @@ set /p bulan="Masukkan bulan: "
 
 cls
 echo Mengunggah file...
-cls
+
 :: Mengunggah file ke server menggunakan curl dan menangkap respons dari server
 curl -X POST https://bijibiji.site/admin/notifications/upload_and_extract ^
 -F "userfile=@%chosenFile%" ^
 -F "fileInfo=%fileInfo%" ^
 -F "bulan=%bulan%" ^
 --silent --show-error --output response.txt
-
+cls
 :: Menampilkan output dari respons yang diterima dari server
 if exist response.txt (
     type response.txt
