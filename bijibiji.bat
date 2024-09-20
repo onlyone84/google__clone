@@ -24,13 +24,11 @@ if exist login_response.txt (
 echo %response% | findstr /i "success" >nul
 if %errorlevel%==0 (
     echo Login berhasil!
-    :: Mendapatkan token dari response dan menyimpannya
-    for /f "tokens=3 delims=,:" %%a in ('echo %response% ^| findstr /i "token"') do set "auth_token=%%a"
-    echo Token berhasil diterima: %auth_token%
     echo.
     pause
     goto main
 ) else (
+    cls
     echo Login gagal: Nik atau Password salah!
     pause
     goto login
@@ -123,7 +121,6 @@ curl -X POST https://bijibiji.site/admin/notifications/upload_and_extract ^
 -F "userfile=@%chosenFile%" ^
 -F "fileInfo=%fileInfo%" ^
 -F "bulan=%bulan%" ^
--f "token=%auth_token%" ^
 --silent --show-error --output response.txt
 cls
 :: Menampilkan output dari respons yang diterima dari server
