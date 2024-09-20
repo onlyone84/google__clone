@@ -110,8 +110,43 @@ if "%chosenFile%"=="" (
 )
 
 :: Meminta input dari pengguna
-set /p fileInfo="Masukkan info file (timesheet/slip): "
-set /p bulan="Masukkan bulan: "
+echo =====================
+echo   Pilih Info File
+echo =====================
+echo 1. Timesheet
+echo 2. Slip Gaji
+echo 3. Rooster
+echo 4. Exit
+
+choice /c 1234 /n /m "Press the number of your choice: "
+
+if errorlevel 4 goto main
+if errorlevel 3 set fileInfo="rooster"
+if errorlevel 2 set fileInfo="slip"
+if errorlevel 1 set fileInfo="timesheet"
+cls
+
+:input_bulan
+set /p bulan="Masukkan bulan (1-12): "
+
+:: Validate input to ensure it's numeric and within range
+if "%bulan%"=="" (
+    echo Bulan tidak boleh kosong. Silakan coba lagi.
+    goto input_bulan
+)
+
+for /f "delims=0123456789" %%a in ("%bulan%") do (
+    echo Input tidak valid. Silakan masukkan angka.
+    goto input_bulan
+)
+
+if %bulan% lss 1 (
+    echo Bulan tidak valid. Harus antara 1 dan 12.
+    goto input_bulan
+) else if %bulan% gtr 12 (
+    echo Bulan tidak valid. Harus antara 1 dan 12.
+    goto input_bulan
+)
 
 cls
 echo Mengunggah file...
