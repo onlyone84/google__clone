@@ -2,7 +2,7 @@
 :login
 cls
 echo ==============================
-echo           Login System.
+echo           Login System..
 echo ==============================
 set /p nik="     Masukkan NIK     : "
 set /p password="Masukkan Password: "
@@ -119,7 +119,7 @@ echo 2. Slip Gaji
 echo 3. Rooster
 echo 4. Laporan HeadCount
 echo 5. Exit
-
+echo.
 :: Membaca pilihan pengguna
 choice /c 12345 /n /m "Press the number of your choice: "
 set "userChoice=%errorlevel%"
