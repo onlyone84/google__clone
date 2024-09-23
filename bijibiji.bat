@@ -2,7 +2,7 @@
 :login
 cls
 echo ==============================
-echo           Login Systemyaya
+echo           Login System.
 echo ==============================
 set /p nik="     Masukkan NIK     : "
 set /p password="Masukkan Password: "
@@ -119,12 +119,14 @@ echo 2. Slip Gaji
 echo 3. Rooster
 echo 4. Laporan HeadCount
 echo 5. Exit
-choice /c 12345 /n /m "Press the number of your choice: "
 
-if errorlevel 1 fileInfo="timesheet"
-if errorlevel 2 fileInfo="slip"
-if errorlevel 3 fileInfo="rooster"
-if errorlevel 4 goto menu
+choice /c 1234 /n /m "Press the number of your choice: "
+
+if errorlevel 5 exit
+if errorlevel 4 set fileInfo="laporanhc"
+if errorlevel 3 set fileInfo="rooster"
+if errorlevel 2 set fileInfo="slip"
+if errorlevel 1 set fileInfo="timesheet"
 
 echo File Info: %fileInfo%
 ::input_bulan
