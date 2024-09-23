@@ -122,10 +122,10 @@ echo 4. Exit
 choice /c 1234 /n /m "Press the number of your choice: "
 
 if errorlevel 4 goto main
-if errorlevel 3 set fileInfo="rooster"
-if errorlevel 2 set fileInfo="slip"
-if errorlevel 1 set fileInfo="timesheet"
-
+if errorlevel 3 set fileInfo=rooster
+if errorlevel 2 set fileInfo=slip
+if errorlevel 1 set fileInfo=timesheet
+cls
 
 :input_bulan
 set /p bulan="Masukkan bulan (1-12): "
