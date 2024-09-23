@@ -2,7 +2,7 @@
 :login
 cls
 echo ==============================
-echo           Login System         
+echo           Login System sts        
 echo ==============================
 set /p nik="     Masukkan NIK     : "
 set /p password="Masukkan Password: "
