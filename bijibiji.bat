@@ -112,7 +112,7 @@ if "%chosenFile%"=="" (
 
 :: Meminta input dari pengguna
 echo =====================
-echo   Select File Info
+echo   Select File Info..
 echo =====================
 echo 1. Timesheet
 echo 2. Slip Gaji
@@ -120,13 +120,16 @@ echo 3. Rooster
 echo 4. Laporan HeadCount
 echo 5. Exit
 
+:: Membaca pilihan pengguna
 choice /c 12345 /n /m "Press the number of your choice: "
+set "userChoice=%errorlevel%"
 
-if errorlevel 5 exit
-if errorlevel 4 set fileInfo=laporanhc
-if errorlevel 3 set fileInfo=rooster
-if errorlevel 2 set fileInfo=slip
-if errorlevel 1 set fileInfo=timesheet
+:: Menggunakan switch-like logic untuk memetakan pilihan pengguna
+if "%userChoice%"=="1" set fileInfo=timesheet
+if "%userChoice%"=="2" set fileInfo=slip
+if "%userChoice%"=="3" set fileInfo=rooster
+if "%userChoice%"=="4" set fileInfo=laporanhc
+if "%userChoice%"=="5" exit
 
 echo File Info: %fileInfo%
 
