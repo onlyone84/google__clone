@@ -117,10 +117,12 @@ echo =====================
 echo 1. Timesheet
 echo 2. Slip Gaji
 echo 3. Rooster
-echo 4. Exit
+echo 4. Laporan HeadCount
+echo 5. Exit
 choice /c 1234 /n /m "Press the number of your choice: "
 set "fileInfo="
-if errorlevel 4 goto exit
+if errorlevel 5 goto exit
+if errorlevel 4 set "fileInfo=laporanhc"
 if errorlevel 3 set "fileInfo=rooster"
 if errorlevel 2 set "fileInfo=slip"
 if errorlevel 1 set "fileInfo=timesheet"
