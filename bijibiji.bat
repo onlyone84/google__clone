@@ -124,7 +124,6 @@ if errorlevel 4 set "fileInfo=exit"
 if errorlevel 3 set "fileInfo=rooster"
 if errorlevel 2 set "fileInfo=slip"
 if errorlevel 1 set "fileInfo=timesheet"
-exit /b
 cls
 
 :input_bulan
