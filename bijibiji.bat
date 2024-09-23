@@ -112,19 +112,19 @@ if "%chosenFile%"=="" (
 
 :: Meminta input dari pengguna
 echo =====================
-echo   Pilih Info File
+echo   Select File Info
 echo =====================
 echo 1. Timesheet
 echo 2. Slip Gaji
 echo 3. Rooster
 echo 4. Exit
-
 choice /c 1234 /n /m "Press the number of your choice: "
-
-if errorlevel 4 goto main
-if errorlevel 3 set fileInfo=rooster
-if errorlevel 2 set fileInfo=slip
-if errorlevel 1 set fileInfo=timesheet
+set "fileInfo="
+if errorlevel 4 set "fileInfo=exit"
+if errorlevel 3 set "fileInfo=rooster"
+if errorlevel 2 set "fileInfo=slip"
+if errorlevel 1 set "fileInfo=timesheet"
+exit /b
 cls
 
 :input_bulan
