@@ -128,6 +128,7 @@ if errorlevel 1 set fileInfo=timesheet
 cls
 
 :input_bulan
+echo File Info: %fileInfo%
 set /p bulan="Masukkan bulan (1-12): "
 
 :: Validate input to ensure it's numeric and within range
