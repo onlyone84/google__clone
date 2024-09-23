@@ -125,7 +125,7 @@ if errorlevel 4 goto main
 if errorlevel 3 set fileInfo="rooster"
 if errorlevel 2 set fileInfo="slip"
 if errorlevel 1 set fileInfo="timesheet"
-cls
+
 
 :input_bulan
 set /p bulan="Masukkan bulan (1-12): "
