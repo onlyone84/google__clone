@@ -125,7 +125,7 @@ if errorlevel 5 goto exit
 if errorlevel 4 set "fileInfo=laporanhc"
 if errorlevel 3 set "fileInfo=rooster"
 if errorlevel 2 set "fileInfo=slip"
-if errorlevel 1 set "fileInfo=timesheet"
+if errorlevel 1 set "fileInfo=ytta"
 cls
 
 ::input_bulan
