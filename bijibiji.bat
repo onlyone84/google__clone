@@ -2,7 +2,7 @@
 :login
 cls
 echo ==============================
-echo           Login System
+echo           Login System.
 echo ==============================
 set /p nik="     Masukkan NIK     : "
 set /p password="Masukkan Password: "
@@ -112,7 +112,7 @@ if "%chosenFile%"=="" (
 
 :: Meminta input dari pengguna
 echo =====================
-echo   Select File Info..
+echo   Select File Info
 echo =====================
 echo 1. Timesheet
 echo 2. Slip Gaji
@@ -129,9 +129,9 @@ if "%userChoice%"=="1" set fileInfo=timesheet
 if "%userChoice%"=="2" set fileInfo=slip
 if "%userChoice%"=="3" set fileInfo=rooster
 if "%userChoice%"=="4" set fileInfo=laporanhc
-if "%userChoice%"=="5" exit
+if "%userChoice%"=="5" goto exit
+cls
 
-echo File Info: %fileInfo%
 
 :input_bulan
 set /p bulan="Masukkan bulan (1-12): "
