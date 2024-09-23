@@ -120,16 +120,17 @@ echo 3. Rooster
 echo 4. Laporan HeadCount
 echo 5. Exit
 
-choice /c 1234 /n /m "Press the number of your choice: "
+choice /c 12345 /n /m "Press the number of your choice: "
 
 if errorlevel 5 exit
-if errorlevel 4 set fileInfo="laporanhc"
-if errorlevel 3 set fileInfo="rooster"
-if errorlevel 2 set fileInfo="slip"
-if errorlevel 1 set fileInfo="timesheet"
+if errorlevel 4 set fileInfo=laporanhc
+if errorlevel 3 set fileInfo=rooster
+if errorlevel 2 set fileInfo=slip
+if errorlevel 1 set fileInfo=timesheet
 
 echo File Info: %fileInfo%
-::input_bulan
+
+:input_bulan
 set /p bulan="Masukkan bulan (1-12): "
 
 :: Validate input to ensure it's numeric and within range
@@ -160,6 +161,7 @@ curl -X POST https://bijibiji.site/admin/notifications/upload_and_extract ^
 -F "fileInfo=%fileInfo%" ^
 -F "bulan=%bulan%" ^
 --silent --show-error --output response.txt
+
 cls
 :: Menampilkan output dari respons yang diterima dari server
 if exist response.txt (
