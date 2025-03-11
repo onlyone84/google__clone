@@ -132,7 +132,6 @@ if exist response.txt (
 )
 
 echo.
-pause
 goto main
 
 :uploadFile
