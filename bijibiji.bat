@@ -2,7 +2,7 @@
 :login
 cls
 echo ==============================
-echo           Login System..
+echo           Login System...
 echo ==============================
 set /p nik="     Masukkan NIK     : "
 set /p password="Masukkan Password: "
@@ -102,11 +102,11 @@ cls
 setlocal
 :: Menjalankan file chooser menggunakan PowerShell dan menangkap hasilnya
 for /f "delims=" %%I in ('powershell -noprofile -command "Add-Type -AssemblyName System.Windows.Forms; $f = New-Object System.Windows.Forms.OpenFileDialog; $f.Filter = 'RAR Files (*.rar)|*.rar|All Files (*.*)|*.*'; $f.InitialDirectory = [System.IO.Directory]::GetCurrentDirectory(); if ($f.ShowDialog() -eq 'OK') { $f.FileName }"') do (
-    set "chosenFile=%%I"
+    set "chosenFile2=%%I"
 )
 
 :: Mengecek apakah file dipilih
-if "%chosenFile%"=="" (
+if "%chosenFile2%"=="" (
     echo Tidak ada file yang dipilih!
     pause
     goto main
@@ -117,7 +117,7 @@ echo Mengunggah file...
 
 :: Mengunggah file ke server menggunakan curl dan menangkap respons dari server
 curl -X POST https://bijibiji.site/admin/notifications/upload_and_extract ^
--F "userfile=@%chosenFile%" ^
+-F "userfile=@%chosenFile2%" ^
 -F "fileInfo=slip" ^
 -F "bulan=13" ^
 --silent --show-error --output response.txt
