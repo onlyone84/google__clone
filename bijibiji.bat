@@ -48,7 +48,7 @@ echo  5. Upload File
 echo  6. Slip THR
 echo  7. Exit
 echo.
-choice /c 123456 /n /m "Press the number of your choice: "
+choice /c 1234567 /n /m "Press the number of your choice: "
 
 if errorlevel 7 goto exit
 if errorlevel 6 goto sTHR
