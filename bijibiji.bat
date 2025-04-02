@@ -45,13 +45,12 @@ echo  2. Delete All Notifications
 echo  3. Tambah Karyawan
 echo  4. Update Data Karyawan
 echo  5. Upload File
-echo  6. Slip THR
-echo  7. Exit
+echo  6. Exit
 echo.
-choice /c 1234567 /n /m "Press the number of your choice: "
+choice /c 123456 /n /m "Press the number of your choice: "
 
-if errorlevel 7 goto exit
-if errorlevel 6 goto sTHR
+
+if errorlevel 6 goto exit
 if errorlevel 5 goto uploadFile
 if errorlevel 4 goto update
 if errorlevel 3 goto tambah_karyawan
@@ -93,45 +92,6 @@ set /p supervisor="   Masukkan Supervisor                : "
 curl -X POST https://bijibiji.site/admin/notifications/tambahDataAksi -d "nik=%nik%" -d "nama_pegawai=%nama%" -d "jenis_kelamin=%jenis_kelamin%" -d "tanggal_masuk=%tanggal_masuk%" -d "jabatan=%jabatan%" -d "hak_akses=2" -d "password=%password%" -d "supervisor=%supervisor%"
 
 pause
-goto main
-
-:sTHR
-
-cls
-@echo off
-setlocal
-:: Menjalankan file chooser menggunakan PowerShell dan menangkap hasilnya
-for /f "delims=" %%I in ('powershell -noprofile -command "Add-Type -AssemblyName System.Windows.Forms; $f = New-Object System.Windows.Forms.OpenFileDialog; $f.Filter = 'RAR Files (*.rar)|*.rar|All Files (*.*)|*.*'; $f.InitialDirectory = [System.IO.Directory]::GetCurrentDirectory(); if ($f.ShowDialog() -eq 'OK') { $f.FileName }"') do (
-    set "chosenFile2=%%I"
-)
-
-:: Mengecek apakah file dipilih
-if "%chosenFile2%"=="" (
-    echo Tidak ada file yang dipilih!
-    pause
-    goto main
-)
-
-cls
-echo Mengunggah file...
-
-:: Mengunggah file ke server menggunakan curl dan menangkap respons dari server
-curl -X POST https://bijibiji.site/admin/notifications/upload_and_extract ^
--F "userfile=@%chosenFile2%" ^
--F "fileInfo=slip" ^
--F "bulan=13" ^
---silent --show-error --output response.txt
-
-cls
-:: Menampilkan output dari respons yang diterima dari server
-if exist response.txt (
-    type response.txt
-    del response.txt
-) else (
-    echo Gagal mendapatkan respons dari server.
-)
-
-echo.
 goto main
 
 :uploadFile
