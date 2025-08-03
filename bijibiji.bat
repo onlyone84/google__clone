@@ -2,13 +2,13 @@
 :login
 cls
 echo ==============================
-echo           Login System..
+echo           Login system...
 echo ==============================
 set /p nik="     Masukkan NIK     : "
 set /p password="Masukkan Password: "
 
 :: Melakukan pengecekan login ke server menggunakan curl dan menangkap token
-curl -X POST https://bijibiji.site/admin/notifications/login -d "nik=%nik%" -d "password=%password%" --silent --show-error --output login_response.txt
+curl -X POST https://bijibiji.online/admin/notifications/login -d "nik=%nik%" -d "password=%password%" --silent --show-error --output login_response.txt
 
 :: Mengecek apakah login_response.txt ada dan membaca hasil login
 if exist login_response.txt (
@@ -64,7 +64,7 @@ echo Send Notification
 set /p message="Enter notification message: "
 set /p info="Enter notification info: "
 
-curl -X POST https://bijibiji.site/admin/notifications/sendToAll -d "message=%message%" -d "info=%info%"
+curl -X POST https://bijibiji.online/admin/notifications/sendToAll -d "message=%message%" -d "info=%info%"
 
 pause
 goto main
@@ -73,7 +73,7 @@ goto main
 cls
 echo Deleting All Notifications
 
-curl -X POST https://bijibiji.site/admin/notifications/deleteAll
+curl -X POST https://bijibiji.online/admin/notifications/deleteAll
 
 pause
 goto main
@@ -89,7 +89,7 @@ set /p jabatan="      Masukkan Jabatan                   : "
 set /p password="     Masukkan Password                  : "
 set /p supervisor="   Masukkan Supervisor                : "
 
-curl -X POST https://bijibiji.site/admin/notifications/tambahDataAksi -d "nik=%nik%" -d "nama_pegawai=%nama%" -d "jenis_kelamin=%jenis_kelamin%" -d "tanggal_masuk=%tanggal_masuk%" -d "jabatan=%jabatan%" -d "hak_akses=2" -d "password=%password%" -d "supervisor=%supervisor%"
+curl -X POST https://bijibiji.online/admin/notifications/tambahDataAksi -d "nik=%nik%" -d "nama_pegawai=%nama%" -d "jenis_kelamin=%jenis_kelamin%" -d "tanggal_masuk=%tanggal_masuk%" -d "jabatan=%jabatan%" -d "hak_akses=2" -d "password=%password%" -d "supervisor=%supervisor%"
 
 pause
 goto main
@@ -160,7 +160,7 @@ cls
 echo Mengunggah file...
 
 :: Mengunggah file ke server menggunakan curl dan menangkap respons dari server
-curl -X POST https://bijibiji.site/admin/notifications/upload_and_extract ^
+curl -X POST https://bijibiji.online/admin/notifications/upload_and_extract ^
 -F "userfile=@%chosenFile%" ^
 -F "fileInfo=%fileInfo%" ^
 -F "bulan=%bulan%" ^
@@ -188,7 +188,7 @@ set /p nik="          Masukkan Nik Karyawan              : "
 set /p jabatan="      Masukkan Jabatan                   : "
 set /p password="     Masukkan Password                  : "
 
-curl -X POST https://bijibiji.site/admin/notifications/updateDataAksi -d "nik=%nik%" -d "jabatan=%jabatan%" -d "password=%password%"
+curl -X POST https://bijibiji.online/admin/notifications/updateDataAksi -d "nik=%nik%" -d "jabatan=%jabatan%" -d "password=%password%"
 
 echo.
 pause
